@@ -1,0 +1,32 @@
+import React, { useState } from "react";
+const filterList = [
+  "all",
+  "mine",
+  "development",
+  "design",
+  "marketing",
+  "sales",
+];
+export default function ProjectFilter({ changeFilter }) {
+  const [currentFilter, setCurrentFilter] = useState("all");
+  const handleClick = (newFilter) => {
+    setCurrentFilter(newFilter);
+    changeFilter(newFilter);
+  };
+  return (
+    <div className="project-filter">
+      <nav>
+        <p>Filter by:</p>
+        {filterList.map((f) => (
+          <button
+            className={currentFilter === f ? "active" : ""}
+            onClick={() => handleClick(f)}
+            key={f}
+          >
+            {f}
+          </button>
+        ))}
+      </nav>
+    </div>
+  );
+}
